@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Category')
+@section('title', 'Post View')
 
 @section('title',"$post->meta_title") 
 @section('meta_description',"$post->meta_description") 
@@ -45,34 +45,38 @@
                         </form>
                     </div>
 
-                    <div class="card card-body shadow-sm mt-3">
+                    @forelse ($post->comments as $comment)
+ 
+                    <div class="comment-container card card-body shadow-sm mt-3">
                         <div class="detail-area">
                             <h6 class="user-name mb-1">
-                                User one 
-                                <small class="ms-3 text-primary">Comment On: 3-5-2022</small>
+                                @if ($comment->user)
+                                    {{ $comment->user->name }}
+                                @endif
+                                <small class="ms-3 text-primary">Comment On:
+                                     {{ $comment->created_at->format('d-m-Y') }}</small>
                             </h6>
                             <p class="user-comment mb-1">
-                                data into database using laravel insert data into 
-                                database using laravel insert daa into database using laravel insert data into.
+                                {!! $comment->comment_body !!}
                             </p>
                         </div>
-                        <div>
-                            <a href="" class="btn btn-primary btn-sm me-2">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm me-2">Delete</a> 
+                        @if(Auth::check() && Auth::id() == $comment->user_id)
+                        <div> 
+                            <button type="button" value="{{ $comment->id }}" class=" deleteComment btn btn-danger btn-sm me-2">Delete</button> 
                         </div>
+                        @endif
                     </div> 
+                    @empty
+                    <div class="card card-body shadow-sm mt-3">
+                        <h6>No comments Yet.</h6>
+                    </div>
+                    @endforelse
                 </div> 
             </div>
             <div class="col-md-3">
                 <div class="border p-2 my-2">
                     <h4>Advertising Area</h4>
-                </div> 
-                <div class="border p-2 my-2">
-                    <h4>Advertising Area</h4>
-                </div> 
-                <div class="border p-2 my-2">
-                    <h4>Advertising Area</h4>
-                </div> 
+                </div>  
 
                 <div class="card mt-3">
                     <div class="card-header">
@@ -82,7 +86,7 @@
                     <div class="card-body">
                         @foreach ($latest_posts as $latest_posts_item)
                         <a href="{{ url('tutorial/'.$latest_posts_item->category->slug.'/' .$latest_posts_item->slug) }}" class="text-decoration-none">
-                            <h6> >
+                            <h6>
                                 {{ $latest_posts_item->name }}
                             </h6>
                         </a>
@@ -90,10 +94,56 @@
                     </div>
                     
                 </div>
-                
-                
+                 
             </div>
         </div>
     </div>
 </div>
 @endsection
+   
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> 
+
+<script>
+    $(document).ready(function () { 
+        
+         $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             }
+         });
+         
+         $(document).on('click', '.deleteComment', function () {
+ 
+             if(confirm('Are you sure want to delete this comment?'))
+             {
+                 // alert("Hi");
+                 var thisClicked = $(this);
+                 var comment_id = thisClicked.val(); 
+                 $.ajax({
+                     type:"POST",
+                     url:"/delete-comment",
+                     data: {
+                         'comment_id' : comment_id
+                     },
+                     success:function(res) { 
+                         if(res.status == 200){  
+                             thisClicked.closest('.comment-container').remove(); 
+                             alert(res.message);
+                         }else{
+                             alert(res.message);
+                         }
+                     }
+                 });
+             }
+             
+         });
+     });
+</script>
+ 
+<!-- @section('script')
+ 
+ <script> 
+     
+ </script>
+ 
+ @endsection -->

@@ -20,7 +20,7 @@
         <div class="card-header">
             <h4>
                 Add Posts
-                <a href="{{ url('admin/add-post')}}" class="btn btn-primary float-end">Add Posts</a>
+                <a href="{{ url('admin/posts')}}" class="btn btn-primary float-end">View Posts</a>
             </h4>
         </div>
 

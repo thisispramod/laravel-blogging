@@ -16,8 +16,8 @@ class CommentController extends Controller
     {
         if(Auth::check())
         {
-            $validator = Validator::make($request->all(), [
-                'comment_body' =>'required|sting'
+            $validator = Validator::make($request->all(),[
+                'comment_body' =>'required|string'
             ]);
 
             if($validator->fails()){
@@ -28,8 +28,8 @@ class CommentController extends Controller
             if($post)
             {
                 Comment::create([
-                    'post_id' => $post->id,
-                    'user_id' => Auth::user()->id,
+                    'post_id' =>$post->id,
+                    'user_id' =>Auth::user()->id,
                     'comment_body' => $request->comment_body
                 ]);
 
@@ -44,4 +44,37 @@ class CommentController extends Controller
             return redirect('login')->with('message', 'Login first to comment');
         } 
     }
+
+    public function destroy(Request $request)
+    {
+        if(Auth::check())
+        {
+            $comment = Comment::where('id', $request->comment_id)
+                        ->where('user_id',Auth::user()->id)
+                        ->first();
+           
+            if($comment)
+            {
+                $comment->delete();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Comment Deleted Successfully!!'
+                ]);
+            }
+            else
+            {
+                return response()->json([
+                    'status' => 500,
+                    'message' => 'Something went wrong!!'
+                ]);
+            } 
+        }else{
+            return response()->json([
+                'status' =>401,
+                'message' => 'Login to Delete this comment!!'
+            ]);
+        }
+        
+    }
+     
 }

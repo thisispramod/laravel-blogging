@@ -29,7 +29,7 @@
 .owl-nav button.owl-prev {
     color : #fff !important;
     margin-left: 10px;
-    background-color: orange !important;
+    background-color: rgba(5, 199, 248, 0.103) !important;
     border: none !important;
     outline: none !important;
     font-size: 20px !important;

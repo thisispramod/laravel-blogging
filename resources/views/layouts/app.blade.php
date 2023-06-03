@@ -13,19 +13,31 @@
     <meta name="keywords" content="@yield('meta_keyword')">
     <meta name="author" content="todospecial">
     
- 
+    @php 
+        $setting = App\Models\Setting::find(2);
+    @endphp
+    @if($setting)  
+    <link rel="shortcut icon" href="asset('uploads/settings/'.$setting->favicon) }}" type="image/x-icon">
+    @endif
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
-    
-    <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+        
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
 </head>
 <body>
+    
     <div id="app">
          @include('layouts.inc.frontend-navbar')
         <main class="py-4">
@@ -36,23 +48,22 @@
 
     </div>
 
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/jquery-3.6.0.min.js') }}" ></script>  -->
-    <!-- <script src="{{ asset('js/bootstrap.bundle.min.js') }}" ></script>  -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}" ></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
+    <!-- Scripts -->  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    
     <script>
         
         $('.category-carousel').owlCarousel({
             loop:true,
             margin:10,
             nav:true,
-            dots:false,
+            dots:true,
             responsive:{
                 0:{
-                    items:1
+                    items:2
                 },
                 600:{
                     items:3
@@ -61,7 +72,8 @@
                     items:4
                 }
             }
-        })
-    </script>
+        });
+ 
+    </script> 
 </body>
 </html>

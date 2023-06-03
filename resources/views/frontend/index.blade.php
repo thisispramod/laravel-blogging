@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title',"Todospecial YT blogging website") 
-@section('meta_description',"Todospecial YT blogging website") 
-@section('meta_keyword',"Coding, error, software review, application features, and new features. ") 
+@section('title',"$setting->meta_title") 
+@section('meta_description',"$setting->meta_description") 
+@section('meta_keyword',"$setting->meta_keyword") 
  
 @section('content')
 
@@ -34,7 +34,7 @@
 <div class="py-1 bg-gray">
     <div class="container">
         <div class="border text-center p-3">
-            <h3>Ad Area</h3>
+            <h3>Advertise Area</h3>
         </div>
     </div>
 </div>
@@ -44,9 +44,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4>Let move on new </h4>
+                <h4>Something About Us</h4>
                 <div class="underline"> </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores nihil, odio qui consequuntur eveniet officiis architecto similique obcaecati id magni ducimus, ullam quasi, corporis quisquam ipsum nam iure at beatae! adipisicing elit. Inventore, minus temporibus facere omnis ipsum architecto vel fugiat ducimus sapiente dolores veniam cupiditate magnam beatae sequi praesentium nesciunt voluptatum voluptate hic.</p> 
+                <p>Welcome to our Todospecial YT Blog, where we bring you the latest in smart gadgets and provide insightful technical reviews! If you're a tech enthusiast or simply fascinated by the ever-evolving world of gadgets, you've come to the right place At our channel, we believe in keeping up with the latest trends and innovations in technology. Whether it's smartphones, smart home devices, wearables, or any other cutting-edge gadgets, we strive to give you a comprehensive overview of their features, functionality, and performance. 
+                </p> 
             </div>
         </div>
     </div>

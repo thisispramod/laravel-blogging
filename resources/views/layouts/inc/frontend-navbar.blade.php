@@ -2,7 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 d-none d-sm-none d-md-inline">
-                <img src="{{ asset('assets/images/logo.png')}}" style="height:50px; width:50px;" alt="logo">
+                @php 
+                 $setting = App\Models\Setting::find(1);
+                @endphp
+                @if($setting)
+                <img src="{{ asset('uploads/settings/'.$setting->logo)}}" style="height:50px; width:50px;" alt="logo">
+                @endif
             </div>
             <div class="col-md-9 my-auto">
                 <div class="border p-2">
@@ -19,7 +24,7 @@
         <div class="container">
 
             <a href="" class="navbar-brand d-inline d-sm-inline d-md-none">
-            <img src="{{ asset('assets/images/logo.png')}}" style="height:50px; width:50px;" alt="logo">
+            <img src="{{ asset('uploads/settings/'.$setting->logo)}}" style="height:50px; width:50px;" alt="logo">
 
             </a>
              
@@ -51,16 +56,19 @@
                     <a class="nav-link" href="{{ url('tutorial/'.$cateitem->slug)}}">{{ $cateitem->name}}</a>
                 </li> 
                 @endforeach
-
+                @if(Auth::check())
                 <li>
                     <a class="nav-link btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </li>
+                @endif
                 
                 </ul> 
             </div>
         </div>
     </nav> 
 </div>
+
+ 

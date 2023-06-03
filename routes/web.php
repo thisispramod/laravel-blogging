@@ -28,7 +28,9 @@ Route::get('/tutorial/{category_slug}/{post_slug}',[App\Http\Controllers\Fronten
 
 //comment section
 
-Route::post('comments', [App\Http\Controller\Frontend\CommentController::class, 'store']);
+Route::post('comments', [App\Http\Controllers\Frontend\CommentController::class, 'store']);
+
+Route::post('delete-comment', [App\Http\Controllers\Frontend\CommentController::class, 'destroy']);
 
 
 
@@ -68,5 +70,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('users/{user_id}',[App\Http\Controllers\Admin\UserController::class, 'edit']);
     
     Route::put('update-user/{user_id}',[App\Http\Controllers\Admin\UserController::class, 'update']);
+
+    Route::get('settings',[App\Http\Controllers\Admin\SettingController::class, 'index']);
+
+    Route::post('settings',[App\Http\Controllers\Admin\SettingController::class, 'savedata']);
+    
 
 });

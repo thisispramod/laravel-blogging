@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" ></script> -->
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -21,8 +21,8 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> 
 
     <style>
-/* 
-        .dataTables_wrapper .dataTables_paginate .paginate_button{
+
+        /* .dataTables_wrapper .dataTables_paginate .paginate_button{
             padding: 0px !important;
             margin: 0px !important;
         }
@@ -67,7 +67,8 @@
     
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js""></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="{{ asset('assets/js/jquery-3.6.4.min.js') }}"></script> 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script> 
     <script src="{{ asset('assets/js/scripts.js') }}"></script>  
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
